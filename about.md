@@ -2,4 +2,4 @@
 
 With this mod, you can edit online level stats (likes, downloads and time)
 
-Open mod settings by clicking this button ![button on screen](isotonicbunk.fake-online-level-stats/tutor_img.png?width=200)
+You can edit it in mod settings. 
