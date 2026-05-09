@@ -10,7 +10,6 @@
 #include <Geode/binding/ButtonSprite.hpp>
 #include <Geode/binding/CCMenuItemSpriteExtra.hpp>
 #include <string>
-#include <windef.h>
 using namespace geode::prelude;
 
 #include <Geode/modify/LevelInfoLayer.hpp>
