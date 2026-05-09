@@ -1,0 +1,68 @@
+{
+	"geode": "5.6.1",
+	"gd": {
+		"win": "2.2081",
+		"android": "2.2081",
+		"mac": "2.2081",
+		"ios": "2.2081"
+	},
+	"id": "isotonicbunk.fake-online-level-stats",
+	"name": "Fake Online Level Stats",
+	"version": "v1.0.0",
+	"developer": "isotonicbunk",
+	"description": "",
+	"tags": ["online", "interface", "utility"],
+	"dependencies": {
+		"geode.node-ids": ">=v1.23.3"
+	},
+	"links": {
+		"source": "https://github.com/IsotonicBunk/FakeOnlineLevelStats"
+	},
+	"resources": {
+		"files": [
+			"resources/tutor_img.png"
+		]
+	},
+	"settings": {
+		"enabled": {
+			"type": "bool",
+			"name": "Enable",
+			"default": false,
+			"description": "Enable fake stats."
+		},
+		"show-btn": {
+			"type": "bool",
+			"name": "Show mod settings button",
+			"default": true,
+			"description": "Show button in level menu that opens this mod settings."
+		},
+		"likes": {
+			"type": "string",
+			"name": "Amount of likes",
+			"default": "0"
+		},
+		"is-dislike": {
+			"type": "bool",
+			"name": "Is disliked?",
+			"default": false,
+			"description": "Show dislike icon, instead of like"
+		},
+		"downloads": {
+			"type": "string",
+			"name": "Amount of downloads",
+			"default": "0"
+		},
+		"length": {
+			"type": "string",
+			"name": "Level length",
+			"default": "Long",
+			"one-of": ["Tiny", "Short", "Medium", "Long", "XL", "Plat.", "Unknown"]
+		},
+		"fix-length-pos": {
+			"type": "bool",
+			"name": "Fix length position",
+			"default": false,
+			"description": "This option will set Y position of length a bit higher"
+		}
+	}
+}
