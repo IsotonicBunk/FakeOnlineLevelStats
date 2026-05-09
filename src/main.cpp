@@ -41,6 +41,7 @@ class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNode
 			leftMenu->addChild(fakeStat);
 			fakeStat->setID("fake-stats-button"_spr);
 			fakeStat->setOpacity(99);
+  leftMenu->updateLayout();
 		}
 		
 		// if enabled
@@ -78,7 +79,6 @@ class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNode
 		fake_likes->setPosition(likes_pos);
 		fake_likes->setScale(likes_scale);
 		fake_likes->setAnchorPoint(likes_anchor);
-		this->updateLayout();
 
 		// length
 		auto orig_length = this->getChildByID("length-label");
