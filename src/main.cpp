@@ -3,9 +3,12 @@
 #include <Geode/ui/GeodeUI.hpp>
 #include "Geode/cocos/cocoa/CCGeometry.h"
 #include "Geode/cocos/cocoa/CCObject.h"
+#include "Geode/cocos/label_nodes/CCLabelBMFont.h"
 #include "Geode/cocos/menu_nodes/CCMenuItem.h"
 #include "Geode/cocos/sprite_nodes/CCSprite.h"
 #include "Geode/cocos/support/CCPointExtension.h"
+#include "Geode/loader/Log.hpp"
+#include "Geode/ui/Notification.hpp"
 #include <Geode/Geode.hpp>
 #include <Geode/binding/ButtonSprite.hpp>
 #include <Geode/binding/CCMenuItemSpriteExtra.hpp>
@@ -23,6 +26,17 @@ class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNode
 		void openSettings(CCObject* sender) {
 			openSettingsPopup(Mod::get());
 		};
+		auto replaceLabel(auto origLabel, auto newLabel) {
+		this->addChild(newLabel);
+		newLabel->setID(origLabel->getID());
+		auto pos = origLabel->getPosition();
+		auto scale = origLabel->getScale();
+		auto anchor = origLabel->getAnchorPoint();
+		newLabel->setPosition(pos);
+		newLabel->setScale(scale);
+		newLabel->setAnchorPoint(anchor);
+		this->removeChildByID(origLabel->getID());
+	}
 	
 	bool init(GJGameLevel* level, bool challenge) {
 		if (!LevelInfoLayer::init(level, challenge)) return false;
@@ -41,7 +55,7 @@ class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNode
 			leftMenu->addChild(fakeStat);
 			fakeStat->setID("fake-stats-button"_spr);
 			fakeStat->setOpacity(99);
-  leftMenu->updateLayout();
+			leftMenu->updateLayout();
 		}
 		
 		// if enabled
@@ -56,46 +70,42 @@ class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNode
 		
 		// downloads
 		auto orig_downloads = this->getChildByID("downloads-label");
+		if (!orig_downloads) {
+			log::error("Failed to get downloads label");
+			Notification::create("Failed to get downloads label!", NotificationIcon::Error, 3);
+			return true;
+		}
 		auto fake_downloads = CCLabelBMFont::create(downloads.c_str(), "bigFont.fnt", 999, CCTextAlignment::kCCTextAlignmentLeft);
-		orig_downloads->setVisible(false);
-		this->addChild(fake_downloads);
-		fake_downloads->setID("fake-downloads"_spr);
-		auto downloads_pos = orig_downloads->getPosition();
-		auto downloads_scale = orig_downloads->getScale();
-		auto downloads_anchor = orig_downloads->getAnchorPoint();
-		fake_downloads->setPosition(downloads_pos);
-		fake_downloads->setScale(downloads_scale);
-		fake_downloads->setAnchorPoint(downloads_anchor);
+		replaceLabel(orig_downloads, fake_downloads);
 
 		// likes
 		auto orig_likes = this->getChildByID("likes-label");
+		if (!orig_likes) {
+			log::error("Failed to get likes label!");
+			Notification::create("Failed to get likes label!", NotificationIcon::Error, 3);
+			return true;
+		}
 		auto fake_likes = CCLabelBMFont::create(likes.c_str(), "bigFont.fnt", 999, CCTextAlignment::kCCTextAlignmentLeft);
-		orig_likes->setVisible(false);
-		this->addChild(fake_likes);
-		fake_likes->setID("fake-likes"_spr);
-		auto likes_pos = orig_likes->getPosition();
-		auto likes_scale = orig_likes->getScale();
-		auto likes_anchor = orig_likes->getAnchorPoint();
-		fake_likes->setPosition(likes_pos);
-		fake_likes->setScale(likes_scale);
-		fake_likes->setAnchorPoint(likes_anchor);
+		replaceLabel(orig_likes, fake_likes);
 
 		// length
 		auto orig_length = this->getChildByID("length-label");
+		if (!orig_length) {
+			log::error("Failed to get length label!");
+			Notification::create("Failed to get length label!", NotificationIcon::Error, 3);
+			return true;
+		}
 		auto fake_length = CCLabelBMFont::create(length.c_str(), "bigFont.fnt", 999, CCTextAlignment::kCCTextAlignmentLeft);
-		orig_length->setVisible(false);
-		this->addChild(fake_length);
-		fake_length->setID("fake-length"_spr);
-		auto length_pos = orig_length->getPosition();
-		auto length_scale = orig_length->getScale();
-		auto length_anchor = orig_length->getAnchorPoint();
-		fake_length->setPosition(length_pos);
-		fake_length->setScale(length_scale);
-		fake_length->setAnchorPoint(length_anchor);
+		replaceLabel(orig_length, fake_length);
 		if (fix_length_pos) fake_length->setAnchorPoint(ccp(0, 0.25));
 
 		//set (dis)like icon
 		auto orig_like_icon = this->getChildByID("likes-icon");
+		if (!orig_like_icon) {
+			log::error("Failed to get (dis)like icon!");
+			Notification::create("Failed to get (dis)like icon!", NotificationIcon::Error, 3);
+			return true;
+		}
 		auto fake_like_icon = CCSprite::createWithSpriteFrameName("GJ_likesIcon_001.png");
 		if (is_dislike) fake_like_icon = CCSprite::createWithSpriteFrameName("GJ_dislikesIcon_001.png");
 		orig_like_icon->setVisible(false);
@@ -108,7 +118,6 @@ class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNode
 		fake_like_icon->setAnchorPoint(like_icon_anchor);
 
 		
-		this->updateLayout();
 		return true;
 	}
 	

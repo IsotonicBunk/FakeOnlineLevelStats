@@ -8,7 +8,7 @@
 	},
 	"id": "isotonicbunk.fake-online-level-stats",
 	"name": "Fake Online Level Stats",
-	"version": "v1.0.0",
+	"version": "v1.0.1",
 	"developer": "isotonicbunk",
 	"description": "",
 	"tags": ["online", "interface", "utility"],
@@ -33,7 +33,7 @@
 		"show-btn": {
 			"type": "bool",
 			"name": "Show mod settings button",
-			"default": false,
+			"default": true,
 			"description": "Show button in level menu that opens this mod settings."
 		},
 		"likes": {
