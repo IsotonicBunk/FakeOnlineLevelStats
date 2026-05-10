@@ -8,7 +8,7 @@
 	},
 	"id": "isotonicbunk.fake-online-level-stats",
 	"name": "Fake Online Level Stats",
-	"version": "v1.0.1",
+	"version": "v1.0.2",
 	"developer": "isotonicbunk",
 	"description": "",
 	"tags": ["online", "interface", "utility"],
@@ -63,6 +63,42 @@
 			"name": "Fix length position",
 			"default": false,
 			"description": "This option will set Y position of length a bit higher"
+		},
+		"downloads-scale-mod": {
+			"type": "float",
+			"name": "Downloads text scale modifier",
+			"description": "Scale modifier of downloads text",
+			"min": 0.1,
+			"max": 3,
+			"default": 1,
+			"control": {
+				"arrows": true,
+				"arrow-step": 0.02,
+				"slider": true,
+				"big-arrows": true,
+				"big-arrow-step": 0.2,
+				"slider-step": 0.02,
+				"input": true
+
+			}
+		},
+		"likes-scale-mod": {
+			"type": "float",
+			"name": "Likes text scale modifier",
+			"description": "Scale modifier of likes text",
+			"min": 0.1,
+			"max": 3,
+			"default": 1,
+			"control": {
+				"arrows": true,
+				"arrow-step": 0.02,
+				"slider": true,
+				"big-arrows": true,
+				"big-arrow-step": 0.2,
+				"slider-step": 0.02,
+				"input": true
+
+			}
 		}
 	}
 }

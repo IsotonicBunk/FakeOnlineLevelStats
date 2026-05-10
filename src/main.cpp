@@ -26,16 +26,16 @@ class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNode
 		void openSettings(CCObject* sender) {
 			openSettingsPopup(Mod::get());
 		};
-		auto replaceLabel(auto origLabel, auto newLabel) {
+		auto replaceLabel(auto origLabel, auto newLabel, std::string newLabelId, double scaleMod) {
 		this->addChild(newLabel);
-		newLabel->setID(origLabel->getID());
+		newLabel->setID(newLabelId);
 		auto pos = origLabel->getPosition();
 		auto scale = origLabel->getScale();
 		auto anchor = origLabel->getAnchorPoint();
 		newLabel->setPosition(pos);
-		newLabel->setScale(scale);
+		newLabel->setScale(scale * scaleMod);
 		newLabel->setAnchorPoint(anchor);
-		this->removeChildByID(origLabel->getID());
+		origLabel->setVisible(false);
 	}
 	
 	bool init(GJGameLevel* level, bool challenge) {
@@ -67,7 +67,10 @@ class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNode
 		auto length = Mod::get()->getSettingValue<std::string>("length");
 		auto is_dislike = Mod::get()->getSettingValue<bool>("is-dislike");
 		auto fix_length_pos = Mod::get()->getSettingValue<bool>("fix-length-pos");
-		
+		auto downloads_scale_mod = Mod::get()->getSettingValue<double>("downloads-scale-mod");
+		auto likes_scale_mod = Mod::get()->getSettingValue<double>("likes-scale-mod");
+
+
 		// downloads
 		auto orig_downloads = this->getChildByID("downloads-label");
 		if (!orig_downloads) {
@@ -75,8 +78,8 @@ class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNode
 			Notification::create("Failed to get downloads label!", NotificationIcon::Error, 3);
 			return true;
 		}
-		auto fake_downloads = CCLabelBMFont::create(downloads.c_str(), "bigFont.fnt", 999, CCTextAlignment::kCCTextAlignmentLeft);
-		replaceLabel(orig_downloads, fake_downloads);
+		auto fake_downloads = CCLabelBMFont::create(downloads.c_str(), "bigFont.fnt", 75, CCTextAlignment::kCCTextAlignmentLeft);
+		replaceLabel(orig_downloads, fake_downloads, "fake-downloads"_spr, downloads_scale_mod);
 
 		// likes
 		auto orig_likes = this->getChildByID("likes-label");
@@ -85,8 +88,8 @@ class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNode
 			Notification::create("Failed to get likes label!", NotificationIcon::Error, 3);
 			return true;
 		}
-		auto fake_likes = CCLabelBMFont::create(likes.c_str(), "bigFont.fnt", 999, CCTextAlignment::kCCTextAlignmentLeft);
-		replaceLabel(orig_likes, fake_likes);
+		auto fake_likes = CCLabelBMFont::create(likes.c_str(), "bigFont.fnt", 75, CCTextAlignment::kCCTextAlignmentLeft);
+		replaceLabel(orig_likes, fake_likes, "fale-likes"_spr, likes_scale_mod);
 
 		// length
 		auto orig_length = this->getChildByID("length-label");
@@ -96,7 +99,7 @@ class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNode
 			return true;
 		}
 		auto fake_length = CCLabelBMFont::create(length.c_str(), "bigFont.fnt", 999, CCTextAlignment::kCCTextAlignmentLeft);
-		replaceLabel(orig_length, fake_length);
+		replaceLabel(orig_length, fake_length, "fake-length"_spr, 1);
 		if (fix_length_pos) fake_length->setAnchorPoint(ccp(0, 0.25));
 
 		//set (dis)like icon

@@ -9,3 +9,6 @@
 - Code optimisation.
 - "Show mod settings button" option is now turned on by default.
 - Mod is now replacing original text, instead of hiding it.
+# 1.0.2
+- The mod is not replaces original text anymore, because of some problems.
+- Added scale modifier settings.
