@@ -7,8 +7,8 @@
 		"ios": "2.2081"
 	},
 	"id": "isotonicbunk.fake-online-level-stats",
-	"name": "Fake Online Level Stats",
-	"version": "v1.0.2",
+	"name": "Fake Level Stats",
+	"version": "v1.1.0",
 	"developer": "isotonicbunk",
 	"description": "",
 	"tags": ["online", "interface", "utility"],
@@ -55,14 +55,7 @@
 		"length": {
 			"type": "string",
 			"name": "Level length",
-			"default": "Long",
-			"one-of": ["Tiny", "Short", "Medium", "Long", "XL", "Plat.", "Unknown"]
-		},
-		"fix-length-pos": {
-			"type": "bool",
-			"name": "Fix length position",
-			"default": false,
-			"description": "This option will set Y position of length a bit higher"
+			"default": "Long"
 		},
 		"downloads-scale-mod": {
 			"type": "float",
