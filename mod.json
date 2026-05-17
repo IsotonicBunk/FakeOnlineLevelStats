@@ -8,7 +8,7 @@
 	},
 	"id": "isotonicbunk.fake-online-level-stats",
 	"name": "Fake Level Stats",
-	"version": "v1.1.0",
+	"version": "v1.1.1",
 	"developer": "isotonicbunk",
 	"description": "",
 	"tags": ["online", "interface", "utility"],

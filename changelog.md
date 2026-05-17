@@ -1,7 +1,13 @@
+# 1.1.1
+- Reworked settings
+- Auto label width
+- Formating number from 1234567890 to 1,234,567,890 format
+- Little changes in my ugly code
+- Updated to Geode v5.7.1
 # 1.1.0 
 - Renamed to "Fake Level Stats"
-- Code refactor (thx to [XBOCTATUK](https://github.com/XBOCTATUK)) :
-    - Editing string, instead of creating new one
+- Code refactor:
+    - Editing text, instead of creating new one
     - Сompatibility with other mods (like [Fake Rate](https://geode-sdk.org/mods/hiimjustin000.fake_rate) mod)
     - Code optimization
 - Custom level length (not only Tiny - XL)

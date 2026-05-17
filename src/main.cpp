@@ -30,6 +30,7 @@ class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNode
 		);
 		
 		// add to menu
+		
 		auto leftMenu = this->getChildByID("left-side-menu");
 		if (leftMenu && Mod::get()->getSettingValue<bool>("show-btn")) {
 			leftMenu->addChild(fakeStat);
@@ -60,7 +61,6 @@ class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNode
 		if (Mod::get()->getSettingValue<bool>("change-length")) {
 			auto length = Mod::get()->getSettingValue<std::string>("length");
 			this->m_lengthLabel->setString(length.c_str());
-			this->m_lengthLabel->setAnchorPoint(ccp(0, 0.25));
 		}
 
 		//set (dis)like icon
