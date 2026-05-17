@@ -1,3 +1,5 @@
+# 1.1.2
+- A little bugfix.
 # 1.1.1
 - Reworked settings
 - Auto label width

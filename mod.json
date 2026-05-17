@@ -8,7 +8,7 @@
 	},
 	"id": "isotonicbunk.fake-online-level-stats",
 	"name": "Fake Level Stats",
-	"version": "v1.1.1",
+	"version": "v1.1.2",
 	"developer": "isotonicbunk",
 	"description": "",
 	"tags": ["online", "interface", "utility"],
@@ -31,7 +31,7 @@
 		"enabled": {
 			"type": "bool",
 			"name": "Enable",
-			"default": true,
+			"default": false,
 			"description": "Enable fake stats."
 		},
 		"show-btn": {
@@ -49,7 +49,7 @@
 			"name": "Custom amount of downloads",
 			"default": true
 		},
-		"downloads": {
+		"downloads-amount": {
 			"type": "int",
 			"name": "Amount of downloads",
 			"default": 0,
@@ -60,7 +60,7 @@
 			"name": "Custom amount of likes",
 			"default": true
 		},
-		"likes": {
+		"likes-amount": {
 			"type": "int",
 			"name": "Amount of likes",
 			"default": 0,

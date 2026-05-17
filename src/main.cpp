@@ -45,14 +45,14 @@ class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNode
 
 		// downloads
 		if (Mod::get()->getSettingValue<bool>("change-downloads")) {
-			auto downloads = getStatText(Mod::get()->getSettingValue<int>("downloads"));
+			auto downloads = getStatText(Mod::get()->getSettingValue<int>("downloads-amount"));
 			this->m_downloadsLabel->setString(downloads.c_str());
 			this->m_downloadsLabel->limitLabelWidth(50.f, 0.5f, 0.1f);
 		}
 
 		// likes
 		if (Mod::get()->getSettingValue<bool>("change-likes")) {
-			auto likes = getStatText(Mod::get()->getSettingValue<int>("likes"));
+			auto likes = getStatText(Mod::get()->getSettingValue<int>("likes-amount"));
 			this->m_likesLabel->setString(likes.c_str());
 			this->m_likesLabel->limitLabelWidth(50.f, 0.5f, 0.1f);
 		}
