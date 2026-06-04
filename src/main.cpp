@@ -10,6 +10,7 @@ std::string getStatText(int num) {
     std::string res = utils::numToString(num);
 
     int insertPos = res.length() - 3;
+    if (num < 0) insertPos--;
     while (insertPos > 0) {
         res.insert(insertPos, ",");
         insertPos -= 3;
