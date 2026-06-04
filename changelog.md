@@ -1,3 +1,7 @@
+# 1.1.3
+- Fixed incorrect number formatting like this 
+
+![number formatting bug](isotonicbunk.fake-online-level-stats/oops.png?height=40)
 # 1.1.2
 - A little bugfix.
 # 1.1.1

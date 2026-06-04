@@ -2,20 +2,20 @@
 #include <Geode/Geode.hpp>
 #include <Geode/ui/GeodeUI.hpp>
 #include <Geode/modify/LevelInfoLayer.hpp>
+#include <cstdlib>
 
 using namespace geode::prelude;
 
 // formats numbers (1234567 to 1,234,567)
 std::string getStatText(int num) {
-    std::string res = utils::numToString(num);
+    std::string res = utils::numToString(abs(num));
 
     int insertPos = res.length() - 3;
-    if (num < 0) insertPos--;
     while (insertPos > 0) {
         res.insert(insertPos, ",");
         insertPos -= 3;
     }
-
+	if (num < 0) res = '-' + res;
     return res;
 }
 

@@ -8,7 +8,7 @@
 	},
 	"id": "isotonicbunk.fake-online-level-stats",
 	"name": "Fake Level Stats",
-	"version": "v1.1.2",
+	"version": "v1.1.3",
 	"developer": "isotonicbunk",
 	"description": "",
 	"tags": ["online", "interface", "utility"],
@@ -20,7 +20,7 @@
 	},
 	"resources": {
 		"files": [
-			"resources/tutor_img.png"
+			"resources/oops.png"
 		]
 	},
 	"settings": {
