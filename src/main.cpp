@@ -91,7 +91,7 @@ $on_mod(Loaded) {
 		if (!scn) return;
 		auto* lyr = scn->getChildById("LevelInfoLayer");
 		
-		if (lyr) lyr.updateLabelValues();
+		if (lyr) lyr->updateLabelValues();
 		
 	});
 }
