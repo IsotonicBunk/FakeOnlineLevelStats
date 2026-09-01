@@ -1,3 +1,5 @@
+# 1.1.5
+- Fixed not updating stats when settings changed
 # 1.1.4
 - Fake stats updating when settings changed, or level updates
 - Updated to Geode v5.10.1
