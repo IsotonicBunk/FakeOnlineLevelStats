@@ -89,7 +89,7 @@ $on_mod(Loaded) {
 	listenForAllSettingChanges([](auto, auto) {
 		auto scn = CCDirector::sharedDirector()->getRunningScene();
 		if (!scn) return;
-		auto* lyr = scn->getChildByID("LevelInfoLayer");
+		auto* lyr = scn->getChildByType<LevelInfoLayer*>();
 		
 		if (lyr) lyr->updateLabelValues();
 		
