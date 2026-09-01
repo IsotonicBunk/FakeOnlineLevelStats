@@ -1,3 +1,6 @@
+# 1.1.4
+- Fake stats updating when settings changed, or level updates
+- Updated to Geode v5.10.1
 # 1.1.3
 - Fixed incorrect number formatting like this 
 

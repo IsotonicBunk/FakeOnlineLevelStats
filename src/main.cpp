@@ -1,9 +1,6 @@
 // i hate c++
 #include <Geode/Geode.hpp>
-#include <Geode/ui/GeodeUI.hpp>
 #include <Geode/modify/LevelInfoLayer.hpp>
-#include <cstdlib>
-
 using namespace geode::prelude;
 
 // formats numbers (1234567 to 1,234,567)
@@ -20,20 +17,20 @@ std::string getStatText(int num) {
 }
 
 class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNodeIDontKnowBruhSorryForModeratorThatVerifyingThisMod, LevelInfoLayer) {
-	bool init(GJGameLevel* level, bool challenge) {
-		if (!LevelInfoLayer::init(level, challenge)) 
-			return false;
-		
-		// settings button
-		auto fakeStat = CCMenuItemExt::createSpriteExtra(
-			CCSprite::createWithSpriteFrameName("GJ_likeBtn_001.png"),
-			[this](auto) { openSettingsPopup(Mod::get()); }
-		);
-		
-		// add to menu
-		
+
+	void updateFakeStats() {
+
+		if (!m_likesLabel || !m_downloadsLabel || !m_lengthLabel || !m_likesIcon) return; 
+
 		auto leftMenu = this->getChildByID("left-side-menu");
-		if (leftMenu && Mod::get()->getSettingValue<bool>("show-btn")) {
+		if (leftMenu && !leftMenu->getChildByID("fake-stats-button"_spr) && Mod::get()->getSettingValue<bool>("show-btn")) {
+			// settings button
+			auto fakeStat = CCMenuItemExt::createSpriteExtra(
+				CCSprite::createWithSpriteFrameName("GJ_likeBtn_001.png"),
+				[this](auto) { openSettingsPopup(Mod::get()); }
+			);
+
+			// add to menu
 			leftMenu->addChild(fakeStat);
 			fakeStat->setID("fake-stats-button"_spr);
 			fakeStat->setOpacity(99);
@@ -42,7 +39,7 @@ class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNode
 		
 		// if enabled	
 		auto enabled = Mod::get()->getSettingValue<bool>("enabled");
-		if (!enabled) return true;
+		if (!enabled) return;
 
 		// downloads
 		if (Mod::get()->getSettingValue<bool>("change-downloads")) {
@@ -71,7 +68,30 @@ class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNode
 			auto likeSpr = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(likeSprName);
 			this->m_likesIcon->setDisplayFrame(likeSpr);
 		}
+	}
 
+	bool init(GJGameLevel* level, bool challenge) {
+		if (!LevelInfoLayer::init(level, challenge)) 
+			return false;
+		updateFakeStats();
 		return true;
 	}
+
+	void updateLabelValues() {
+		LevelInfoLayer::updateLabelValues();
+		updateFakeStats();
+		log::debug("label was upadted");
+	}
+
 };
+
+$on_mod(Loaded) {
+	listenForAllSettingChanges([](auto, auto) {
+		auto scn = CCDirector::sharedDirector()->getRunningScene();
+		if (!scn || scn->getChildrenCount() > 0) return;
+		if (!scn->getChildByID("LevelInfoLayer")) return;
+		
+		LevelInfoLayer lyr;
+		lyr.updateLabelValues();
+	});
+}
