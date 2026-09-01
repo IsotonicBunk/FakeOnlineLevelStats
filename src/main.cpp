@@ -88,10 +88,10 @@ class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNode
 $on_mod(Loaded) {
 	listenForAllSettingChanges([](auto, auto) {
 		auto scn = CCDirector::sharedDirector()->getRunningScene();
-		if (!scn || scn->getChildrenCount() > 0) return;
-		if (!scn->getChildByID("LevelInfoLayer")) return;
+		if (!scn) return;
+		auto* lyr = scn->getChildById("LevelInfoLayer");
 		
-		LevelInfoLayer lyr;
-		lyr.updateLabelValues();
+		if (lyr) lyr.updateLabelValues();
+		
 	});
 }
