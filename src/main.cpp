@@ -16,6 +16,7 @@ std::string getStatText(int num) {
     return res;
 }
 
+
 class $modify(MyLevelInfoLayerOrSomethingIReallyDontKnowHowToNameThisLayerOrNodeIDontKnowBruhSorryForModeratorThatVerifyingThisMod, LevelInfoLayer) {
 
 	void updateFakeStats() {
