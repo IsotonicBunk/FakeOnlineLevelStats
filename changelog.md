@@ -1,3 +1,5 @@
+# 1.1.6
+- Ported to 2.2091
 # 1.1.5
 - Fixed not updating stats when settings changed
 # 1.1.4
