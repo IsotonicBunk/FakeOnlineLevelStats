@@ -1,5 +1,5 @@
 {
-	"geode": "6.0.0-alpha.1",
+	"geode": "6.0.0-beta.1",
 	"gd": {
 		"win": "2.2091",
 		"android": "2.2091",
@@ -8,7 +8,7 @@
 	},
 	"id": "isotonicbunk.fake-online-level-stats",
 	"name": "Fake Level Stats",
-	"version": "v1.1.5",
+	"version": "v1.1.6",
 	"developer": "isotonicbunk",
 	"description": "Fake likes and downloads on your levels",
 	"tags": ["online", "interface", "utility"],
